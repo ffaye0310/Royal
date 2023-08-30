@@ -15,14 +15,13 @@ export class UsersService {
 
   constructor(private http : HttpClient) {
     this.api_base_url = "http://localhost:1337/api"
-    // this.token = JSON.stringify(localStorage.getItem('token'))
-    // console.log()
+    this.token = JSON.stringify(localStorage.getItem('token'))
   }
 
 
   getUsers() : Observable<User[]> {
     this.hedears = new HttpHeaders ({
-      "Authorization" : "Bearer",
+      "Authorization" : `Bearer ${JSON.parse(this.token)}`,
     })
     return this.http.get<User[]>(`${this.api_base_url}/users`,{headers : this.hedears})
   }

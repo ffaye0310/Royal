@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CustomersListComponent } from './components/customers-list/customers-list.component';
 import { CustomersAddComponent } from './components/customers-add/customers-add.component';
 import { CustomersRoutingModule } from './customers-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,11 +12,13 @@ import { CustomersRoutingModule } from './customers-routing.module';
   declarations: [
     // CustomersComponent,
     CustomersListComponent,
-    CustomersAddComponent
+    CustomersAddComponent,
+    
   ],
   imports: [
     CommonModule,
-    CustomersRoutingModule
+    CustomersRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class CustomersModule { }
