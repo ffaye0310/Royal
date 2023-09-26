@@ -1,5 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable,map, switchMap, tap } from 'rxjs';
 import { Entry } from 'src/app/core/interfaces/entry';
 import { Response } from 'src/app/core/interfaces/response';
@@ -19,14 +20,15 @@ import { CustomersService } from 'src/app/core/services/customers.service';
 export class CustomersListComponent implements OnInit {
   customer$ !:  Observable<Entry<Customer>[]>
   customer !: Customer
+  deleteMessage !: string
   
-  constructor(private customerService : CustomersService) { }
+  constructor(private customerService : CustomersService,
+              private route : Router) { }
 
   ngOnInit(): void {
     this.customer$ = this.customerService.getCustomers().pipe(
       map( data => data.data.map(x => x)) ,
-      // tap ( x => console.log(x) )
-
+      // tap ( x => console.log(x) 
     )
       
     
@@ -34,14 +36,24 @@ export class CustomersListComponent implements OnInit {
   }
 
   onEdit = (id : number) => {
-      alert(id)
+  
+      this.route.navigateByUrl(`customers/edit/${id}`)
   }
   
   onDelete = (id : number) => {
-    if(this.customerService.deleteCustomer(id)){
-      // location.reload()
-      alert()
-    }
+
+    this.customerService.deleteCustomer(id).subscribe
+    (
+      result  => {
+          if (result.data) {
+            this.deleteMessage = "success"
+            setTimeout( () => location.reload() , 3000)
+          }else {
+            this.deleteMessage = "error"
+            setTimeout( () => location.reload() , 3000)
+          }
+      }
+    )
 
   }
 

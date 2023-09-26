@@ -9,7 +9,7 @@ import { AdminLayoutComponent } from './components/admin-layout/admin-layout.com
 @NgModule({
   declarations: [
     HeaderComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
 
   ],
   imports: [

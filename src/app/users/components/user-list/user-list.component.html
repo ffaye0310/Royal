@@ -1,4 +1,4 @@
-<div class="row-span-full flex justify-end ">
+<!-- <div class="row-span-full flex justify-end ">
   <a [routerLink]="['/users/new']" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
     <svg  class="w-5 h-5 mr-2 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
@@ -44,9 +44,9 @@
                       <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                   </div>
               </td>
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-1000">
+              <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-1000">
                   {{ user.first_name+" "+user.last_name | titlecase }}
-              </th>
+              </td>
               <td class="px-6 py-4">
                  {{user.email}}
               </td>
@@ -62,4 +62,76 @@
 
       </tbody>
   </table>
-</div>
+</div> -->
+
+
+
+
+<div class="row-span-full flex justify-end">
+    <a [routerLink]="['/users/new']" type="button" class="text-white bg-t hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex mr-2 bg-gradient-to-r from-cyan-500 to-blue-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      <svg  class="w-5 h-5 mr-2 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+      </svg>
+  
+      Nouvel Utilisateur
+
+    </a>
+  </div>
+  
+  <!-- <div class="row mt-5" *ngIf="deleteMessage">
+      <div *ngIf="deleteMessage === 'error'" class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+          <span class="font-medium">Error !</span> Something went wrong 
+      </div>
+      <div *ngIf="deleteMessage === 'success'" class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+          <span class="font-medium">Success !</span> Customer successfully deleted
+      </div>
+  </div> -->
+  <div class="bg-white relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 bg-white">
+        <thead class="bg-gradient-to-r from-cyan-500 to-blue-500 text-xs text-white uppercase  dark:text-gray-100">
+            <tr>
+                <!-- <th scope="col" class="p-4">
+                    <div class="flex items-center">
+                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-100 focus:ring-2 dark:bg-gray-100 dark:border-gray-100">
+                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                    </div>
+                </th> -->
+                <th scope="col" class="px-6 py-3">
+                    Product name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Color
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Color
+                </th>
+  
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let user of users$ | async as list" class=" bg-light-300 light:bg-light-900 dark:text-cyan-600 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-100">
+                
+                <td scope="row" class="px-6 py-4 font-medium text-cyan-600 whitespace-nowrap dark:text-gray-1000">
+                    {{ user.first_name+" "+user.last_name | titlecase }}
+                </td>
+                <td scope="row" class="px-6 py-4 font-medium text-cyan-600 whitespace-nowrap dark:text-gray-1000">
+                   {{user.email}}
+                </td>
+                <td scope="row" class="px-6 py-4 font-medium text-cyan-600 whitespace-nowrap dark:text-gray-1000">
+                    {{user.username}}
+                </td>
+  
+                <td class="items-center space-x-3">                    
+                    <a href="#" class="rounded-full  text-cyan-600  hover:underline">Edit</a>
+                    <a href="#" class=" text-red-600   hover:underline">Remove</a>
+                </td>
+            </tr>
+  
+        </tbody>
+    </table>
+  </div>
+  

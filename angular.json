@@ -19,6 +19,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
+              {"glob": "**/*", "input": "../../public", "output": "./assets/"},
               "src/favicon.ico",
               "src/assets"
             ],
@@ -26,7 +27,7 @@
               "./src/styles.css"
             ],
             "scripts": [
-
+              "./node_modules/chart.js/dist/chart.umd.js"
             ]
           },
           "configurations": {

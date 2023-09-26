@@ -5,6 +5,7 @@ import { CustomersListComponent } from './components/customers-list/customers-li
 import { CustomersAddComponent } from './components/customers-add/customers-add.component';
 import { CustomersRoutingModule } from './customers-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CustomersEditComponent } from './components/customers-edit/customers-edit.component';
 
 
 
@@ -13,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     // CustomersComponent,
     CustomersListComponent,
     CustomersAddComponent,
+    CustomersEditComponent,
     
   ],
   imports: [
