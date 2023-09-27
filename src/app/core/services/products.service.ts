@@ -42,6 +42,12 @@ export class ProductsService {
     return this.http.get<Response<Products>>(`${this.api_base_url}/products/${id}`,{headers : this.hedears})
   }
 
+  updateProduct(id  : number, data: Products) : Observable<Response<Products>> {
+    const formdata = new FormData()
+    formdata.append("data" , JSON.stringify({"name" : data.name , "price" : data.price}))
+    return this.http.put<Response<Products>>(`${this.api_base_url}/products/${id}`,formdata,{headers : this.hedears})
+  }
+
   deleteProduct (id:number) : Observable<Response<Products>> {
       return this.http.delete<Response<Products>>(`${this.api_base_url}/products/${id}`,{headers : this.hedears})
   }

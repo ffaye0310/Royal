@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, map, switchMap, tap } from 'rxjs';
 import { Entry } from 'src/app/core/interfaces/entry';
 import { Response } from 'src/app/core/interfaces/response';
@@ -13,11 +14,13 @@ import { ProductsService } from 'src/app/core/services/products.service';
 })
 export class ProductEditComponent implements OnInit {
 
+  id !: number
+  message !: string
   productFormEdit !: FormGroup
   productToEdit !: Products
   products$ !: Observable<any>
   
-  constructor(private ps : ProductsService, private fb : FormBuilder) { }
+  constructor(private ps : ProductsService, private fb : FormBuilder, private router : Router) { }
 
   ngOnInit(): void {
 
@@ -26,10 +29,10 @@ export class ProductEditComponent implements OnInit {
       price : ["null"]  
     })
 
-    const id = parseInt(location.href.split("/")[5])
+    this.id = parseInt(location.href.split("/")[5])
 
-    this.products$ = this.ps.getProductById(id).pipe(
-      map( x => x.data      )  
+    this.products$ = this.ps.getProductById(this.id).pipe(
+      map( x => x.data )  
     )  
     
     
@@ -48,7 +51,24 @@ export class ProductEditComponent implements OnInit {
   }
 
   onSubmitProductFormEdit = () => {
-      alert()
+      this.productToEdit = new Products()
+      this.productToEdit.name = this.productFormEdit.value.name
+      this.productToEdit.price = this.productFormEdit.value.price
+      this.ps.updateProduct(this.id, this.productToEdit).subscribe(
+        result => {
+          if (result) {
+            this.message = "success"
+            setTimeout(() => {
+              this.router.navigateByUrl("/products")
+            }, 3000);
+  
+          }
+          else {
+            this.message = "error"
+          }
+        },
+        error => console.error(error)
+      )
   } 
 
 }

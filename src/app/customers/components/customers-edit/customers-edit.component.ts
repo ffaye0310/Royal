@@ -46,15 +46,7 @@ export class CustomersEditComponent implements OnInit {
         this.customerForm.setValue({"name" : x.attributes.name,"logo":null})
       }
     )
-    
-   
 
-    
-    
-
-    this.customerForm.valueChanges.subscribe(
-      () => console.log(this.customerForm) 
-    )
 
   }
 
