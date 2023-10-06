@@ -8,7 +8,7 @@ export class User  {
   created_at ?: string
   // birth !: string
   // profil_img !: string
-  // role !: string
+  role !: number
   password !: string
   // confirm_password ?: string
 }

@@ -7,6 +7,7 @@ import { UserAddComponent } from './components/user-add/user-add.component';
 import { Observable } from 'rxjs';
 import { User } from '../core/models/user.model';
 import { UsersService } from '../core/services/users.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { UsersService } from '../core/services/users.service';
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
     UserListComponent,

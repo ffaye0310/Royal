@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
-
+import { Response } from '../interfaces/response';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,17 +16,26 @@ export class UsersService {
   constructor(private http : HttpClient) {
     this.api_base_url = "http://localhost:1337/api"
     this.token = JSON.stringify(localStorage.getItem('token'))
+    this.hedears = new HttpHeaders ({
+      "Authorization" : `Bearer ${JSON.parse(this.token)}`,
+    })
   }
 
 
   getUsers() : Observable<User[]> {
-    this.hedears = new HttpHeaders ({
-      "Authorization" : `Bearer ${JSON.parse(this.token)}`,
-    })
+    
     return this.http.get<User[]>(`${this.api_base_url}/users`,{headers : this.hedears})
   }
 
   getUsersById (id:number) : Observable<User> {
-    return this.http.get<User>(`${this.api_base_url}/user/${id}`)
+    return this.http.get<User>(`${this.api_base_url}/user/${id}`,{headers : this.hedears})
   }
+
+  getRules = () => {
+        return this.http.get(`${this.api_base_url}/users-permissions/roles`,{headers : this.hedears})
+  }
+  
+  addUser(data : FormData) : Observable<Response<User>> {
+      return this.http.post<Response<User>>(`${this.api_base_url}/users`,data, {headers : this.hedears})
+  }    
 }
