@@ -1,3 +1,5 @@
+import { Rules } from "./rules.model"
+
 export class User  {
   id !:number
   username !: string
@@ -6,9 +8,9 @@ export class User  {
   last_name !: string
   provider ?: string
   created_at ?: string
-  // birth !: string
+  phone !: number
   // profil_img !: string
-  role !: number
+  role !: Rules
   password !: string
   // confirm_password ?: string
 }

@@ -8,13 +8,15 @@ import { Observable } from 'rxjs';
 import { User } from '../core/models/user.model';
 import { UsersService } from '../core/services/users.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 
 
 @NgModule({
   declarations: [
     UserListComponent,
-    UserAddComponent
+    UserAddComponent,
+    UserEditComponent
   ],
   imports: [
     CommonModule,
