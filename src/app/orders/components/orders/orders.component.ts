@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable, Subscribable, map, tap } from 'rxjs';
+import { Entry } from 'src/app/core/interfaces/entry';
+import { Order } from 'src/app/core/models/order.model';
+import { CustomersService } from 'src/app/core/services/customers.service';
+import { OrderService } from 'src/app/core/services/order.service';
 
 @Component({
   selector: 'app-orders',
@@ -6,10 +12,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
+// customer$: Observable<undefined>|Subscribable<undefined>|Promise<undefined>;
+  orders$  !: Observable<Order[]>
 
-  constructor() { }
+  constructor(private orderService : OrderService,
+    private route : Router) { }
 
   ngOnInit(): void {
+    this.orders$ = this.orderService.getOrders().pipe(
+      map(data => data.data.map(x => x.attributes)) ,
+      // tap ( x = )
+    )
+    this.orders$.subscribe(
+      x => {
+        console.log(x);
+      }
+    )
+
   }
+  
+  onEdit(arg0: any) {
+    throw new Error('Method not implemented.');
+    }
+    onDelete(arg0: any) {
+    throw new Error('Method not implemented.');
+    }
 
 }

@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Injectable, ɵɵsanitizeResourceUrl } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Customer } from '../models/customer.model';
+import { Customer } from '../models/order.model';
 import { Response } from '../interfaces/response';
 import { BoundElementProperty } from '@angular/compiler';
 @Injectable({
