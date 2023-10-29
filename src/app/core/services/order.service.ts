@@ -33,7 +33,7 @@ export class OrderService {
     this.headers = new HttpHeaders({
       "Authorization": `Bearer ${JSON.parse(this.token)}`
     })
-    return this.http.get<Response<Order>>(`${this.api_base_url}/order/${id}?populate=*`,{ headers: this.headers })
+    return this.http.get<Response<Order>>(`${this.api_base_url}/orders/${id}?populate=*`,{ headers: this.headers })
   }
 
   addOrder (data : FormData) : Observable<Response<Order>> {

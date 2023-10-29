@@ -13,14 +13,15 @@ import { OrderService } from 'src/app/core/services/order.service';
 })
 export class OrdersComponent implements OnInit {
 // customer$: Observable<undefined>|Subscribable<undefined>|Promise<undefined>;
-  orders$  !: Observable<Order[]>
+  orders$  !: Observable<Entry<Order>[]>
+  order$ !: Observable<Entry<Order>>
 
   constructor(private orderService : OrderService,
     private route : Router) { }
 
   ngOnInit(): void {
     this.orders$ = this.orderService.getOrders().pipe(
-      map(data => data.data.map(x => x.attributes)) ,
+      map(data => data.data.map(x => x)) ,
       // tap ( x = )
     )
     this.orders$.subscribe(
@@ -34,8 +35,16 @@ export class OrdersComponent implements OnInit {
   onEdit(arg0: any) {
     throw new Error('Method not implemented.');
     }
-    onDelete(arg0: any) {
+  onDelete(arg0: any) {
     throw new Error('Method not implemented.');
-    }
+  }
+
+  onOrderFocused(id : number) {
+    this.order$ = this.orderService.getOrderById(id).pipe(
+      map( x => x.data[0]),
+      tap( x => console.log(x) )
+    )
+    
+  }
 
 }

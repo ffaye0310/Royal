@@ -1,60 +1,62 @@
+<div class="grid grid-cols-4 gap-4 overflow-x-auto justify-between mt-5">
+  <div class="bg-white col-span-2 sm:rounded-lg p-5">
+    <table
+      class="w-full text-sm text-left text-gray-500 dark:text-gray-400 bg-white"
+    >
+      <thead
+        class="bg-gradient-to-r from-cyan-500 to-blue-500 text-xs text-white uppercase dark:text-gray-100"
+      >
+        <tr>
+          <div class="w-full">
+            <th scope="col" class="px-6 py-3">Customer name</th>
+            <th scope="col" class="px-6 py-3">Date</th>
+            <th scope="col" class="px-6 py-3">Delivery state</th>
+          </div>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <div class="w-full" *ngFor="let item of orders$ | async">
 
+        <tr  
+          (click)="onOrderFocused(item.id)"
+          class="bg-light-300 light:bg-light-900 dark:text-cyan-600 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-100"
+        >
+                <!-- <a onclick="{alert()}" href="javascript:void(0)"> -->
 
+            <td 
+              scope="row"
+              class="px-6 py-4 font-medium text-cyan-600 whitespace-nowrap dark:text-gray-1000"
+            >
+              {{ item.attributes.customer.data.attributes.name }}
+            </td>
+            <td
+              scope="row"
+              class="px-6 py-4 font-medium text-cyan-600 whitespace-nowrap dark:text-gray-1000"
+            >
+              {{ item.attributes.createdAt| date : "mediumDate" : "local" }}
+            </td>
+            <td class="px-6 py-4">
+              <div
+                data-te-chip-init
+                data-te-ripple-init
+                class="[word-wrap: break-word] my-[5px] mr-4 flex h-[32px] cursor-pointer items-center justify-center rounded-[16px] border border-red-400 bg-[#eceff1] bg-[transparent] px-[12px] py-0 text-[13px] font-normal normal-case leading-loose text-[#4f4f4f] shadow-none transition-[opacity] duration-300 ease-linear hover:border-[#3b71ca] hover:!shadow-none dark:text-red-700"
+                data-te-ripple-color="dark"
+              >
+                {{ "Undelivery" }}
+              </div>
+            </td>
+          <!-- </a> -->
+        </tr>
+      </div>
 
-  <div class="grid grid-cols-4 gap-4 overflow-x-auto justify-between mt-5">
-    <div class="bg-white col-span-2 sm:rounded-lg p-5">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 bg-white">
-        <thead class="bg-gradient-to-r from-cyan-500 to-blue-500 text-xs text-white uppercase  dark:text-gray-100">
-            <tr>
-                <!-- <th scope="col" class="p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-100 focus:ring-2 dark:bg-gray-100 dark:border-gray-100">
-                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                    </div>
-                </th> -->
-                <th scope="col" class="px-6 py-3">
-                    Product name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Color
-                </th>
-               
-  
-                <th scope="col" class="px-6 py-3">
-                    Action
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr  *ngFor="let item of orders$ | async ;" class=" bg-light-300 light:bg-light-900 dark:text-cyan-600 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-100">
-              <td scope="row" class="px-6 py-4 font-medium text-cyan-600 whitespace-nowrap dark:text-gray-1000">
-                {{ item.customer.data.attributes.name  }}
-              </td>
-              <td scope="row" class="px-6 py-4 font-medium text-cyan-600 whitespace-nowrap dark:text-gray-1000">
-                {{ item.createdAt | date : "mediumDate"  : "local"  }}
-              </td>
-              <td class="px-6 py-4">
-                          <div
-                            data-te-chip-init
-                            data-te-ripple-init
-                            class="[word-wrap: break-word] my-[5px] mr-4 flex h-[32px] cursor-pointer items-center justify-center rounded-[16px] border border-red-400 bg-[#eceff1] bg-[transparent] px-[12px] py-0 text-[13px] font-normal normal-case leading-loose text-[#4f4f4f] shadow-none transition-[opacity] duration-300 ease-linear hover:border-[#3b71ca] hover:!shadow-none dark:text-red-700"
-                            data-te-ripple-color="dark">
-                            {{'Undelivery'}}
-                            
-                          </div>
-                    </td>
-             
-                <!-- <td class="items-center space-x-3"> -->
-                  <!-- <a type="button" class="rounded-none bg-red-500">Save Changes</a> -->
-                    <!-- <button (click)="onEdit(item.id)" href="#" class="rounded-full  text-cyan-600  hover:underline">Edit</button> -->
-                    <!-- <button (click)="onDelete(item.id)" href="#" class=" text-red-600   hover:underline">Remove</button> -->
-                <!-- </td> -->
-            </tr>
-  
-        </tbody>
+      </tbody>
     </table>
-    </div>
-    <!-- ... -->
-      
-    <div class="bg-white col-span-2 sm:rounded-lg"></div>
   </div>
+  <div class="bg-white col-span-2 sm:rounded-lg">
+    <div *ngIf="order$ | async as order">
+      <div>{{order.attributes.customer.data.attributes.name}}</div>
+        
+    </div>
+  </div>
+</div>
