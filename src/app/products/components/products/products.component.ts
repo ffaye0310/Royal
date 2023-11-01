@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Observable,map, switchMap, tap } from 'rxjs';
 import { Entry } from 'src/app/core/interfaces/entry';
 import { Response } from 'src/app/core/interfaces/response';
-import { Customer } from 'src/app/core/models/order.model';
 import { Products } from 'src/app/core/models/products.model';
 import { CustomersService } from 'src/app/core/services/customers.service';
 import { ProductsService } from 'src/app/core/services/products.service';

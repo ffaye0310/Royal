@@ -2,7 +2,8 @@ import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Customer } from 'src/app/core/models/order.model';
+import { Customer } from 'src/app/core/models/customer.model';
+
 import { CustomersService } from 'src/app/core/services/customers.service';
 
 @Component({
