@@ -1,14 +1,9 @@
+import { Order } from "./order.model"
+
 export class Sales  {
-  // id !:number
-  // username !: string
-  // email !: string
-  // first_name !: string
-  // last_name !: string
-  // provider ?: string
-  // created_at ?: string
-  // // birth !: string
-  // // profil_img !: string
-  // // role !: string
-  // password !: string
-  // confirm_password ?: string
+  id !:number
+  order !: Order
+  payment !: any
+  createdAt !: string
+ 
 }
